@@ -5,6 +5,7 @@ using System.Text;
 using LarkFramework.FSM;
 using LarkFramework.Procedure;
 using LarkFramework.UI;
+using LarkFramework.Scenes;
 
 namespace Project
 {
@@ -27,6 +28,9 @@ namespace Project
 
             //加载Splash动画
             UIManager.Instance.OpenPage(UIDef.SplashPage);
+
+            //加载场景
+            //ScenesManager.Instance.LoadSceneAsync(SceneDef.HomeScene,false, () => { sceneLoadOver = true; });
         }
 
         protected internal override void OnUpdate(IFSM<ProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -45,6 +49,9 @@ namespace Project
         protected internal override void OnLeave(IFSM<ProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
+
+            //加载场景
+            ScenesManager.Instance.LoadSceneAsync(SceneDef.HomeScene);
         }
     }
 }

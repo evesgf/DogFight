@@ -11,6 +11,8 @@ namespace Project
         protected override void OnOpen(object arg = null)
         {
             base.OnOpen(arg);
+
+            UIManager.Instance.OpenWindow(UIDef.MenuWindow);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Project
     public static class SceneDef
     {
         public const string MenuScene = "";
-        public const string HomeScene = "Scene/HomeScene";
+        public const string HomeScene = "Home";
         public const string Splash = "Scene/Splash";
     }
 }

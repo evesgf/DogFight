@@ -5,6 +5,8 @@ using System.Text;
 using LarkFramework.FSM;
 using LarkFramework.Procedure;
 using LarkFramework.UI;
+using LarkFramework.Audio;
+using LarkFramework.Scenes;
 
 namespace Project
 {
@@ -16,6 +18,9 @@ namespace Project
 
             //加载UI
             UIManager.Instance.OpenPage(UIDef.MainPage);
+
+            //加载BGM
+            AudioManager.Instance.PlayBGM(AudioDef.BGM_MainBGM,0.2f);
         }
 
         protected internal override void OnUpdate(IFSM<ProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
