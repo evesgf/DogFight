@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TestClient
 {
-    class Program
+    class ClientEntry
     {
         static void Main(string[] args)
         {
@@ -52,7 +52,14 @@ namespace TestClient
             while(true)
             {
                 string s = Console.ReadLine();
-                clientSocket.Send(Encoding.UTF8.GetBytes(s));
+
+                if (s == "c")
+                {
+                    clientSocket.Close();
+                    return;
+                }
+
+                clientSocket.Send(Message.GetBytes(s));
             }
 
             Console.ReadKey();

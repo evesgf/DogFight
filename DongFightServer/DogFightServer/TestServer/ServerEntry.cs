@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TestServer
 {
-    class Program
+    class ServerEntry
     {
         static void Main(string[] args)
         {
@@ -57,25 +57,59 @@ namespace TestServer
             Socket clientSocket = serverSocket.Accept();    //接收一个客户端的连接
 
             //向客户端发送消息
-            string msg = "你好 世界 (by [TestServer])";
-            clientSocket.Send(Encoding.UTF8.GetBytes(msg));
+            string msgStr = "你好 世界 (by [TestServer])";
+            clientSocket.Send(Encoding.UTF8.GetBytes(msgStr));
 
             //异步接收客户端的消息
-            clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);
+            clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallBack, clientSocket);
 
             Console.ReadKey();
         }
 
         static byte[] dataBuffer = new byte[1024];
+        static Message msg = new Message();
         static void ReceiveCallBack(IAsyncResult result)
         {
-            Socket clientSocket = result.AsyncState as Socket;
-            int count=clientSocket.EndReceive(result);
-            string msgReceive = Encoding.UTF8.GetString(dataBuffer, 0, count);
-            Console.WriteLine("[TestServer]" + msgReceive);
+            Socket clientSocket = null;
+            try
+            {
+                clientSocket = result.AsyncState as Socket;
+                int count = clientSocket.EndReceive(result);
 
-            //回调，再继续异步接收客户端的消息
-            clientSocket.BeginReceive(dataBuffer, 0, 1024, SocketFlags.None, ReceiveCallBack, clientSocket);
+                if (count == 0)
+                {
+                    clientSocket.Close();
+                    Console.WriteLine("[TestServer]客户端下线");
+                    return;
+                }
+
+                //加入数据缓冲
+                msg.AddCount(count);
+
+                //string msgReceive = Encoding.UTF8.GetString(msg.Data, msg.StartIndex, msg.RemainSize);
+                //Console.WriteLine("[TestServer]" + msgReceive+"["+ count + "]");
+
+                //读取
+                msg.ReadMessage();
+
+                //回调，再继续异步接收客户端的消息
+                clientSocket.BeginReceive(msg.Data, msg.StartIndex, msg.RemainSize, SocketFlags.None, ReceiveCallBack, clientSocket);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+                if (clientSocket != null)
+                {
+                    clientSocket.Close();
+                }
+
+                throw;
+            }
+            finally
+            {
+
+            }
         }
     }
 }
