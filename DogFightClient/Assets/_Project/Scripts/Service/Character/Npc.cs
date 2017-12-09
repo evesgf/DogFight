@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Project
 {
-    public class MapData
+    class Npc
     {
-
     }
 }

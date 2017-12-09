@@ -1,4 +1,7 @@
 ﻿
+using LarkFramework.Module;
+using LarkFramework.Procedure;
+using LarkFramework.Scenes;
 using LarkFramework.UI;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +16,7 @@ namespace Project
 	public class MenuWind : LarkFramework.UI.UIWindow
     {
 		public Button btn_QuickStart;
+        public Button btn_DrillMode;
 		
 		protected override void OnOpen(object arg = null)
 		{
@@ -20,6 +24,7 @@ namespace Project
 
             //Button
             btn_QuickStart.onClick.AddListener(OnQuickStart);
+            btn_DrillMode.onClick.AddListener(OnDrillMode);
 
             GUIAniOpen();
 		}
@@ -28,6 +33,7 @@ namespace Project
 		{
             //Button
             btn_QuickStart.onClick.RemoveListener(OnQuickStart);
+            btn_DrillMode.onClick.RemoveListener(OnDrillMode);
             GUIAniClose();
 
             base.Close(waitSeconds, arg);
@@ -37,6 +43,13 @@ namespace Project
         {
             Close(1f);
             UIManager.Instance.OpenWindow(UIDef.QuickStartWindow);
+        }
+
+        public void OnDrillMode()
+        {
+            Close(1f);
+            ProcedureManager.Instance.ChangeProcedure<ProcedureDrill>();
+            ScenesManager.Instance.LoadSceneAsync(SceneDef.DrillScene);
         }
 
     }

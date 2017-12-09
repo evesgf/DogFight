@@ -8,6 +8,8 @@ namespace Project
     {
         #region BGM
 	    public const string BGM_MainBGM = "BGM/MenuBGM";
+
+        public const string BGM_DrillBGM = "BGM/DrillBGM";
         #endregion
 
         #region Music

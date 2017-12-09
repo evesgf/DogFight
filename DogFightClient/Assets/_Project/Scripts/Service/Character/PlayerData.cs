@@ -15,12 +15,12 @@ namespace Project
         /// <summary>
         /// 这个ID 是单局中分配的ID，只在单局中有效
         /// </summary>
-        [ProtoMember(1)] public uint id;
+        [ProtoMember(1)] public int id;
 
         /// <summary>
         /// 这个玩家对应的用户的ID 
         /// </summary>
-        [ProtoMember(2)] public uint userId;
+        [ProtoMember(2)] public int userId;
 
         /// <summary>
         /// 玩家的名字

@@ -10,12 +10,14 @@ using UnityEngine;
 
 namespace Project
 {
-    public class GameEntry : MonoBehaviour
+    [DisallowMultipleComponent]
+    [AddComponentMenu("LarkFramework/GameEntry")]
+    public partial class GameEntry : MonoBehaviour
     {
-
         public LaunchType lanuchType = LaunchType.Debug;
         public string startScene;
         public string startUI;
+        public string startAudio;
 
         public enum LaunchType
         {
@@ -24,7 +26,7 @@ namespace Project
         }
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             Init();
         }
@@ -42,19 +44,8 @@ namespace Project
                     break;
             }
 
-            ModuleManager.Instance.Init("Project");
-
-            //InitModule
-
-            SingletonMono<ResourcesMgr>.Create();
-
-            ScenesManager.Instance.Init("Scene/Example/");
-            ScenesManager.MainScene = SceneExampleDef.Example;
-            ScenesManager.Instance.LoadScene(SceneExampleDef.LoadOK);
-
-            UIManager.Instance.Init("UI/Example/");
-            UIManager.MainPage = "UIPage1";
-            UIManager.Instance.EnterMainPage();
+            LarkFramework.GameEntry.GameEntry.InitBuiltinComponents();
+            InitCustomComponents();
 
             DontDestroyOnLoad(gameObject);
         }

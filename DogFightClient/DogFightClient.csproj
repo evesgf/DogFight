@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -99,6 +101,9 @@
     </Reference>
     <Reference Include="GUIAnimator">
       <HintPath>Assets/CommonPack/GUI Animator/GUI Animator for Unity UI/Plugins/GUIAnimator.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>Assets/CommonPack/Plugins/protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="Vectrosity">
       <HintPath>Assets/CommonPack/Plugins/Vectrosity.dll</HintPath>
@@ -310,6 +315,7 @@
     <Compile Include="Assets\LarkFramework\GameEntry\GameEntry.Builtin.cs" />
     <Compile Include="Assets\LarkFramework\GameEntry\GameEntry.cs" />
     <Compile Include="Assets\LarkFramework\LoadFile\ExcelHelper.cs" />
+    <Compile Include="Assets\LarkFramework\Math\SGFRandom.cs" />
     <Compile Include="Assets\LarkFramework\Module\BusinessModlue.cs" />
     <Compile Include="Assets\LarkFramework\Module\EventTable.cs" />
     <Compile Include="Assets\LarkFramework\Module\Example\Module_Example.cs" />
@@ -363,29 +369,36 @@
     <Compile Include="Assets\LarkFramework\Utils\Utility.cs" />
     <Compile Include="Assets\_Project\Scripts\Audio\AudioDef.cs" />
     <Compile Include="Assets\_Project\Scripts\Camera\CameraFilterPack_Blur_Movie.cs" />
-    <Compile Include="Assets\_Project\Scripts\Data\GameMode.cs" />
-    <Compile Include="Assets\_Project\Scripts\Data\GameParam.cs" />
-    <Compile Include="Assets\_Project\Scripts\Data\MapData.cs" />
-    <Compile Include="Assets\_Project\Scripts\Data\PlayerData.cs" />
-    <Compile Include="Assets\_Project\Scripts\Data\ShipData.cs" />
     <Compile Include="Assets\_Project\Scripts\Extension\DictionaryExtension.cs" />
     <Compile Include="Assets\_Project\Scripts\GameEntry\GameEntry.Custom.cs" />
     <Compile Include="Assets\_Project\Scripts\GameEntry\GameEntry.cs" />
+    <Compile Include="Assets\_Project\Scripts\Module\GameManager\GameContext.cs" />
+    <Compile Include="Assets\_Project\Scripts\Module\GameManager\GameEvent.cs" />
+    <Compile Include="Assets\_Project\Scripts\Module\GameManager\GameManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\Module\GameManager\GameMode.cs" />
+    <Compile Include="Assets\_Project\Scripts\Module\GameManager\GameParam.cs" />
     <Compile Include="Assets\_Project\Scripts\Module\GloableEvent.cs" />
     <Compile Include="Assets\_Project\Scripts\Module\InputManager\GameVKey.cs" />
     <Compile Include="Assets\_Project\Scripts\Module\InputManager\InputComponent.cs" />
     <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureChageScene.cs" />
+    <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureDrill.cs" />
     <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureHome.cs" />
     <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureLaunch.cs" />
     <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureSearch.cs" />
     <Compile Include="Assets\_Project\Scripts\Procedure\ProcedureSplash.cs" />
     <Compile Include="Assets\_Project\Scripts\Scene\SceneDef.cs" />
-    <Compile Include="Assets\_Project\Scripts\Service\GameManager\DrillMode.cs" />
-    <Compile Include="Assets\_Project\Scripts\Service\GameManager\GameContext.cs" />
-    <Compile Include="Assets\_Project\Scripts\Service\GameManager\GameEvent.cs" />
-    <Compile Include="Assets\_Project\Scripts\Service\GameManager\GameManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Character\Npc.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Character\Player.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Character\PlayerData.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\DrillModule\DrillGameMode.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\DrillModule\DrillModule.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Map\GameMap.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Map\MapData.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Map\MapScript.cs" />
+    <Compile Include="Assets\_Project\Scripts\Service\Ship\ShipData.cs" />
     <Compile Include="Assets\_Project\Scripts\Service\UserManager\Data\UserData.cs" />
     <Compile Include="Assets\_Project\Scripts\Service\UserManager\UserManager.cs" />
+    <Compile Include="Assets\_Project\Scripts\UI\DrillModePage.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MainMenuPage.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\MenuWind.cs" />
     <Compile Include="Assets\_Project\Scripts\UI\QuickStartWind.cs" />
