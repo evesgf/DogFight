@@ -1,4 +1,6 @@
-﻿using LarkFramework.Module;
+﻿using LarkFramework.Entity;
+using LarkFramework.Entity.Example;
+using LarkFramework.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +62,10 @@ namespace Project
             //创建地图
             m_map = new GameMap();
             m_map.Load(param.mapData);
+
+            //初始化工厂
+            EntityFactory.Init();
+            ViewFactory.Init(GameObject.Find("EntityComponent").transform);
 
             m_isRunning = true;
         }

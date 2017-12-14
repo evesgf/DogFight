@@ -30,6 +30,8 @@ namespace Project
 
             InputComponent.Instance.ShowInputPanel();
             InputComponent.OnVkey += OnVKey;
+
+            CreatePlayer();
         }
 
         public void Stop()

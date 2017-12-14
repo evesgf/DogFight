@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LarkFramework.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace Project
         public ShipData ShipData { get { return m_data.shipData; } }
         public GameObject Container { get { return m_container; } }
 
+        public ShipBase m_Shap;
+
         /// <summary>
         /// 创建
         /// </summary>
@@ -40,10 +43,11 @@ namespace Project
             m_context = GameManager.Instance.Context;
 
             //创建用来显示视图的容器
-            m_container = new GameObject("SnakePlayer" + data.id);
+            m_container = new GameObject("_Ship" + data.id);
 
-            //放置在出生坐标
-            m_container.transform.position = pos;
+            //创建飞船
+            m_Shap = EntityFactory.InstanceEntity<ShipBase>();
+            m_Shap.Create(pos, "Ships/AXS/AXS", GameObject.Find("Ship_Avatar").transform);
         }
 
         public void Release()

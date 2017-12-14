@@ -41,6 +41,7 @@ namespace Project
         private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
             if (!isShowPanel) return;
+            if (Mover == null) return;
 
             Vector3 pos = Mover.transform.position;
             pos.x += (amount.x * Speed * Time.deltaTime);
@@ -67,7 +68,7 @@ namespace Project
         public void ShowInputPanel()
         {
             isShowPanel = true;
-            //JoystickScript.gameObject.SetActive(isShowPanel);
+            JoystickScript.gameObject.SetActive(isShowPanel);
         }
 
         public void HideInputPanel()
