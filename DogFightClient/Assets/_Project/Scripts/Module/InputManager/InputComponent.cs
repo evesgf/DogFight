@@ -14,6 +14,7 @@ namespace Project
     [AddComponentMenu("Project/Input Component")]
     public class InputComponent : SingletonMono<InputComponent>
     {
+        public Button btn_Skill1;
         public FingersJoystickScript JoystickScript;
 
         public GameObject Mover;
@@ -35,18 +36,22 @@ namespace Project
         public void Init()
         {
             HideInputPanel();
-            JoystickScript.JoystickExecuted = JoystickExecuted;
+        }
+
+        private void OnBtnSkill1()
+        {
+            HandleVKey(GameVKey.Skill_H1, 1);
         }
 
         private void JoystickExecuted(FingersJoystickScript script, Vector2 amount)
         {
             if (!isShowPanel) return;
-            if (Mover == null) return;
+            //if (Mover == null) return;
 
-            Vector3 pos = Mover.transform.position;
-            pos.x += (amount.x * Speed * Time.deltaTime);
-            pos.z += (amount.y * Speed * Time.deltaTime);
-            Mover.transform.position = pos;
+            //Vector3 pos = Mover.transform.position;
+            //pos.x += (amount.x * Speed * Time.deltaTime);
+            //pos.z += (amount.y * Speed * Time.deltaTime);
+            //Mover.transform.position = pos;
 
             HandleVKey(GameVKey.MoveX, amount.x);
             HandleVKey(GameVKey.MoveY, amount.y);
@@ -68,12 +73,16 @@ namespace Project
         public void ShowInputPanel()
         {
             isShowPanel = true;
+            btn_Skill1.onClick.AddListener(OnBtnSkill1);
             JoystickScript.gameObject.SetActive(isShowPanel);
+            JoystickScript.JoystickExecuted += JoystickExecuted;
         }
 
         public void HideInputPanel()
         {
             isShowPanel = false;
+            btn_Skill1.onClick.RemoveListener(OnBtnSkill1);
+            JoystickScript.JoystickExecuted -= JoystickExecuted;
             JoystickScript.gameObject.SetActive(isShowPanel);
         }
 

@@ -26,7 +26,7 @@ namespace Project
         private List<Player> m_listPlayer = new List<Player>();
         private List<Npc> m_listNpc = new List<Npc>();
         //玩家单局Id与玩家数据绑定
-        private Dictionary<int, PlayerData> m_mapPlayerData = new Dictionary<int, PlayerData>();
+        private DictionaryEx<int, PlayerData> m_mapPlayerData = new DictionaryEx<int, PlayerData>();
 
         public event PlayerDieEvent onPlayerDie;
 
@@ -144,7 +144,7 @@ namespace Project
         {
             Player player = new Player();
 
-            PlayerData data = new PlayerData();
+            PlayerData data = m_mapPlayerData[playerId];
             Vector3 pos = new Vector3();
 
             player.Create(data, pos);

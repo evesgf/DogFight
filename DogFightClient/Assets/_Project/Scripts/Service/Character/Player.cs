@@ -47,7 +47,7 @@ namespace Project
 
             //创建飞船
             m_Shap = EntityFactory.InstanceEntity<ShipBase>();
-            m_Shap.Create(pos, "Ships/AXS/AXS", GameObject.Find("Ship_Avatar").transform);
+            m_Shap.Create(pos, "Ships/AXS/prefab_AXS", GameObject.Find("Ship_Avatar").transform);
         }
 
         public void Release()
@@ -65,7 +65,8 @@ namespace Project
 
         public void EnterFrame(int frameIndex)
         {
-            HandleMove();
+            ShipRotate();
+            //ShipMove();
         }
 
         public void InputVKey(int vkey, float arg)
@@ -76,17 +77,17 @@ namespace Project
 
         private Vector3 m_MoveDirection = new Vector3();
         public Vector3 MoveDirection { get { return m_MoveDirection; } }
-        private Vector3 m_InputMoveDirection = new Vector3();
+        private Vector3 m_InputQuate = new Vector3();
         private float m_Skill1 = 1;
         private bool DoVKey_Move(int vkey, float args)
         {
             switch (vkey)
             {
                 case GameVKey.MoveX:
-                    m_InputMoveDirection.x = args;
+                    m_InputQuate.x = args;
                     break;
                 case GameVKey.MoveY:
-                    m_InputMoveDirection.z = args;
+                    m_InputQuate.z = args;
                     break;
                 case GameVKey.Skill_H1:
                     m_Skill1 = args;
@@ -98,9 +99,16 @@ namespace Project
             return true;
         }
 
-        private void HandleMove()
+        private void ShipRotate()
         {
-            m_MoveDirection = m_InputMoveDirection;
+            Quaternion q = Quaternion.Euler(m_Shap.Quate().eulerAngles.x, m_Shap.Quate().eulerAngles.y + m_InputQuate.x, m_Shap.Quate().eulerAngles.z+ m_InputQuate.z);
+            m_Shap.QuateTo(q);
+            m_Shap.MoveTo(m_Shap.Position() + q * Vector3.right);
+        }
+
+        private void ShipMove()
+        {
+            m_Shap.MoveTo(m_Shap.Position()+Vector3.right);
         }
     }
 }

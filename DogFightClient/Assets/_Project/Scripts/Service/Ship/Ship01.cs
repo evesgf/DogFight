@@ -10,10 +10,13 @@ namespace Project
 {
     public class Ship01 : ViewObject
     {
+        public float rotateSpped;
         public Transform weaponRoot;
 
         [SerializeField]
         private Vector3 m_entityPosition;
+        [SerializeField]
+        private Vector3 m_entityQuate;
 
         private ShipBase m_entity;
 
@@ -33,6 +36,16 @@ namespace Project
         protected override void Release()
         {
             m_entity = null;
+        }
+
+        private void Update()
+        {
+            if (m_entity != null)
+            {
+                gameObject.transform.rotation = m_entity.Quate();
+                //gameObject.transform.Rotate(new Vector3(0, m_entityQuate.x * rotateSpped,m_entityQuate.z* rotateSpped));
+                gameObject.transform.localPosition = m_entity.Position();
+            }
         }
     }
 }

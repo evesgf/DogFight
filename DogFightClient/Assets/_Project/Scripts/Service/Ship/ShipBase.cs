@@ -11,6 +11,7 @@ namespace Project
     public class ShipBase : EntityObject
     {
         private Vector3 m_pos;
+        private Quaternion m_quate;
 
         public void Create(Vector3 pos,string path,Transform parent)
         {
@@ -27,6 +28,21 @@ namespace Project
         public override Vector3 Position()
         {
             return m_pos;
+        }
+
+        public override Quaternion Quate()
+        {
+            return m_quate;
+        }
+
+        internal void MoveTo(Vector3 pos)
+        {
+            m_pos = pos;
+        }
+
+        internal void QuateTo(Quaternion quate)
+        {
+            m_quate = quate;
         }
     }
 }
